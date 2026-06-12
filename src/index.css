@@ -1,0 +1,38 @@
+@font-face {
+  font-family: logo;
+  src: url(/Fonts/AraFfonts/Blaka-Regular-1.ttf);
+}
+@font-face {
+  font-family: ditals;
+  src: url(/Fonts/Cairo/static/Cairo-Bold.ttf);
+}
+@font-face {
+  font-family: Lalezar;
+  src: url(/Fonts/TheYearofHandicrafts-Regular.otf.ttf);
+}
+*{
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  background: rgb(230, 230, 230);
+  font-family: Lalezar !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.card {
+  height: 380px;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.category-btn:hover {
+  width: auto;
+}
