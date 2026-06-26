@@ -1,19 +1,17 @@
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import CardActionArea from "@mui/material/CardActionArea";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import { CarContext } from "./context/carContext";
 import { MassegContext } from "./context/masseg";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+
 export default function Phones() {
   const { car, setCar } = useContext(CarContext);
   const [mass, setMass] = useContext(MassegContext);
@@ -48,11 +46,26 @@ export default function Phones() {
     },
   ]);
 
+  // const [phone, setPhone] = useState([{name: "", id: 1, images: [{"url": "/s25Ultra.jpg"}]}, {name: "", id: 2, images: [{"url": "/iPhone17Pro.jpg"}]}, {name: "", id: 3, images: [{"url": "/oppoFindX9Pro.jpg"}]}]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://dummyjson.com/products/category/smartphones")
+  //     .then((response) => {
+  //       console.log(response.data)
+  //       setPhone(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
+  
   const phoneMap = phone.map((p) => (
     <Card
       style={{
-        width: "200px",
-        height: "300px",
+        width: "150px",
+        height: "270px",
         margin: "10px",
         padding: "10px",
         borderRadius: "10px",
@@ -61,7 +74,7 @@ export default function Phones() {
     >
       <CardMedia
         component="img"
-        height="120"
+        height="80"
         image={p.img}
         alt="green iguana"
       />
@@ -114,7 +127,7 @@ export default function Phones() {
     if (phoneid) {
       setCar([...car, phoneid]);
       setMass("تمت الاضافة الى العربة");
-       setTimeout(() => {
+      setTimeout(() => {
         setMass("");
       }, 2000);
     }
@@ -122,14 +135,15 @@ export default function Phones() {
   return (
     <div
       style={{
-        width: "95%",
+        width: "100%",
         height: "auto",
         overflowY: "auto",
-        minHeight: "100vh",
         boxSizing: "border-box",
+        columns: "3",
+        columnGap: "20px",
         display: "flex",
         flexWrap: "wrap",
-      }}
+        }}
     >
       {phoneMap}
     </div>

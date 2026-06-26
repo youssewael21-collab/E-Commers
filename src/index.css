@@ -10,19 +10,21 @@
   font-family: Lalezar;
   src: url(/Fonts/TheYearofHandicrafts-Regular.otf.ttf);
 }
-*{
+* {
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
   background: rgb(230, 230, 230);
   font-family: Lalezar !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 .card {
   height: 380px;
@@ -35,4 +37,41 @@ code {
 }
 .category-btn:hover {
   width: auto;
+}
+.hButs:hover {
+  width: 400px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .header {
+    font-size: 10px !important;
+  }
+  .hButs {
+    flex-direction: column-reverse;
+    width: 50px !important;
+    height: 40px !important;
+    position: absolute;
+    top: 1%;
+    left: 3%;
+    background: transparent;
+  }
+  .hButs[data-menu-open="true"] {
+    height: 220px !important;
+    width: 50px !important;
+    background: rgb(230, 230, 230);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .pay {
+    width: 40% !important;
+    font-size: 8px !important;
+  }
+  .carCard {
+    height: auto !important;
+    font-size: 10px !important;
+  }
+  .carCard img {
+    width: 50px !important;
+  }
 }

@@ -16,16 +16,32 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import HomeIcon from "@mui/icons-material/Home";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { CarContext } from "./context/carContext";
 import { useState, useContext } from "react";
 import { CategoryContext } from "./context/categorys";
 import { MassegContext } from "./context/masseg";
 
+import { v4 as uuidv4 } from "uuid";
+
 function App() {
-  const [car, setCar] = useState([]);
+  const [car, setCar] = useState([
+    {
+      id: uuidv4(),
+      name: "s25 ultra - 512G, 12RAM",
+      price: 55000,
+      img: "/s25Ultra.jpg",
+      sale: "",
+      check: false,
+      itemNum: 1,
+    },
+  ]);
   const [open, setOpen] = useState(false);
   const [mass, setMass] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuWidth = menuOpen ? "400px" : "50px";
 
   const categorys = useContext(CategoryContext);
   const categoriesMap = categorys.map((c) => (
@@ -53,12 +69,13 @@ function App() {
         <Router>
           <div
             style={{
-              width: "98.9vw",
-              height: "100vh",
+              width: "100vw",
+              minHeight: "100vh",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "flex-start",
+              overflowX: "hidden",
             }}
           >
             {/* masseg */}
@@ -99,28 +116,6 @@ function App() {
                 zIndex: "1000",
               }}
             >
-              <Container
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                  width: "auto",
-                }}
-              >
-                <Button variant="text" component={Link} to="/العربه">
-                  <ShoppingCartIcon
-                    fontSize="large"
-                    style={{ color: "#00897b" }}
-                  />
-                </Button>
-                <Button variant="text" component={Link} to="/الحساب">
-                  <AccountCircleIcon
-                    fontSize="large"
-                    style={{ color: "#00897b" }}
-                  />
-                </Button>
-              </Container>
               <div
                 style={{ position: "relative", display: "inline-block" }}
                 onMouseEnter={() => setOpen(true)}
@@ -128,6 +123,7 @@ function App() {
               >
                 {/* زر الفئات */}
                 <Button
+                  className="header"
                   style={{
                     width: "70px",
                     height: "auto",
@@ -164,7 +160,18 @@ function App() {
                     {categoriesMap}
                   </div>
                 )}
-              </div>{" "}
+              </div>
+              <Button to="/" style={{ textDecoration: "none" }}>
+                <h1
+                  style={{
+                    color: "black",
+                    fontFamily: "logo",
+                  }}
+                >
+                  YG
+                </h1>
+              </Button>
+
               <Container
                 style={{
                   display: "flex",
@@ -192,6 +199,7 @@ function App() {
                 </Button>
 
                 <input
+                  className="header"
                   type="text"
                   placeholder="بحث عن..."
                   style={{
@@ -217,17 +225,7 @@ function App() {
                   height: "100%",
                 }}
               >
-                <Button to="/" style={{ textDecoration: "none" }}>
-                  <h1
-                    style={{
-                      color: "black",
-                      fontFamily: "logo",
-                    }}
-                  >
-                    YG
-                  </h1>
-                </Button>
-                <Container
+                <div
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -236,25 +234,51 @@ function App() {
                     width: "auto",
                   }}
                 >
-                  <Button variant="text" component={Link} to="/">
-                    <HomeIcon fontSize="large" style={{ color: "#00897b" }} />
-                  </Button>
-                  <Button variant="text" component={Link} to="/الحساب">
-                    <Brightness4Icon
-                      fontSize="large"
-                      style={{ color: "#00897b" }}
-                    />
-                  </Button>
-                </Container>
+                  <div
+                    className="hButs"
+                    onClick={() => setMenuOpen((prev) => !prev)}
+                    data-menu-open={menuOpen}
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      alignItems: "center",
+                      width: menuWidth,
+                      overflow: "hidden",
+                      transition: "0.35s ease",
+                    }}
+                  >
+                    <Button variant="text" component={Link} to="/">
+                      <HomeIcon style={{ color: "#00897b" }} />
+                    </Button>
+                    <Button variant="text" component={Link} to="/العربه">
+                      <ShoppingCartIcon style={{ color: "#00897b" }} />
+                    </Button>
+                    <Button variant="text" component={Link} to="/الحساب">
+                      <AccountCircleIcon style={{ color: "#00897b" }} />
+                    </Button>
+                    <Button variant="text" component={Link} to="/الحساب">
+                      <Brightness4Icon style={{ color: "#00897b" }} />
+                    </Button>
+                    <Button aria-label="Toggle menu">
+                      <MenuIcon
+                        style={{
+                          color: "gray",
+                        }}
+                      />
+                    </Button>
+                  </div>
+                </div>
               </div>
             </header>
 
             <div
               style={{
                 width: "100%",
-                height: "100%",
+                minHeight: "calc(100vh - 120px)",
                 display: "flex",
                 justifyContent: "center",
+                alignItems: "flex-start",
+                overflowX: "hidden",
               }}
             >
               <Routes>

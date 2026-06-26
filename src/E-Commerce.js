@@ -31,25 +31,27 @@ const categorys = useContext(CategoryContext);
   ));
 
   return (
-    <div>      
-    <Container
-      maxWidth="xl"
+    <div
       style={{
+        width: "90%",
         background: "rgb(230, 230, 230)",
-        height: "100vh",
+        minHeight: "100vh",
         color: "white",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
         flexDirection: "column",
+        overflowX: "hidden",
       }}
     >
       <Container
+        maxWidth={false}
         style={{
+          width: "100%",
           display: "flex",
           gap: "20px",
           marginBottom: "20px",
-          overflowX: "scroll",
+          overflowX: "auto",
           height: "auto",
           background: "rgb(200, 200, 200)",
           padding: "20px",
@@ -63,7 +65,6 @@ const categorys = useContext(CategoryContext);
       <main>
         <p style={{ color: "black" }}>Welcome to the E-Commerce page!</p>
       </main>
-    </Container>
         </div>
 
   );
